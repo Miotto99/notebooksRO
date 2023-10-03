@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/home.css">
+    <script src="home.js" defer></script>
+    <title>Home</title>
+</head>
+<body>
+<nav role="navigation">
+    <div id="menuToggle">
+        <input type="checkbox"/>
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul id="menu">
+            <h1 th:text="${nome}" style="color: green;"></h1>
+            <div th:if="${usuario.id_cargo == 1}">
+                <a href="/cadastroNote">
+                    <li>Cadastro Notes</li>
+                </a>
+                <a href="/cadastro">
+                    <li>Cadastro Pessoas</li>
+                </a>
+                <a href="/cadastroSoftware">
+                    <li>Cadastro De Software</li>
+                </a>
+            </div>
+            <div th:if="${usuario.id_cargo == 2}">
+                <h1 th:text="${nome}" style="color: green;"></h1>
+                <a href="/cadastroNote">
+                    <li>Cadastro Notes</li>
+                </a>
+                <a href="/cadastroSoftware">
+                    <li>Cadastro De Software</li>
+                </a>
+            </div>
+            <div th:if="${usuario.id_cargo == 3}">
+                <h1 th:text="'Bem Vindo:' + ${usuario.nome}" style="color: green;"></h1>
+                <a href="#">
+                    <li>Locação De Notes</li>
+                </a>
+            </div>
+            <a href="/logout" type="submit" class="btn btn-warning">Deslogar</a>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
