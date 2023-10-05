@@ -1,26 +1,22 @@
-$("#cadastroNote").click(cadastrarNote);
-$("#sair").click(sair);
+$("#enviar").click(cadastrarNotebooks);
 
-    function sair(){
-        window.location.href="Home/home";
-    }
+function cadastrarNotebooks(){
+    let numero = $("#numero").val();
+    let patrimonio = $("#patrimonio").val();
 
-    function cadastrarNote(){
-        let numeroNote = $("#numero").val();
-        let patrimonio = $("#patrimonio").val();
+    $.ajax({
+        type: "POST",
+        url: "/cadastro/notebooks",
+        data:{
+            numero: numero,
+            patrimonio: patrimonio
+        },
+        success: function(data){
+            alert(data);
+        },
+        error: function(){
+            alert("deu ruim");
+        }
+    });
 
-        $.ajax({
-            type: "POST",
-            url: "/cadastroNote",
-            data:{
-                numero:numeroNote,
-                patrimonio:patrimonio,
-            },
-            success:function(data){
-                alert("ok");
-            },
-            error: function(){
-                alert("deu ruim lek, complicado");
-            }
-        });
-    }
+}

@@ -1,53 +1,86 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/home.css">
-    <script src="home.js" defer></script>
-    <title>Home</title>
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!--Sweet Alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css" rel="stylesheet">
+    <!--Custom Scripts-->
+    <script th:if="usuario.id_cargo == 1" src="cadastroNotes.js"></script>
+    <script src="JS/home.js" defer></script>
+    <!--Custom Styles-->
+    <style type="text/css">
+        h6{
+            color: #fff;
+            margin-right: 1em;
+        }
+    </style>
+    <title>Document</title>
 </head>
 <body>
-<nav role="navigation">
-    <div id="menuToggle">
-        <input type="checkbox"/>
-        <span></span>
-        <span></span>
-        <span></span>
-        <ul id="menu">
-            <h1 th:text="${nome}" style="color: green;"></h1>
-            <div th:if="${usuario.id_cargo == 1}">
-                <a href="/cadastroNote">
-                    <li>Cadastro Notes</li>
-                </a>
-                <a href="/cadastro">
-                    <li>Cadastro Pessoas</li>
-                </a>
-                <a href="/cadastroSoftware">
-                    <li>Cadastro De Software</li>
-                </a>
+<nav class="navbar navbar-expand-lg border-bottom border-body bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item" th:if="${usuario.id_cargo == 1}">
+                    <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>
+                    <a class="nav-link" href="/cadastro">Cadastrar Usuario</a>
+                    <a class="nav-link" href="/cadastroSoftware">Cadastrar Software</a>
+                    <a class="nav-link" href="#">Locação Notebooks</a>
+                </li>
+                <li class="nav-item" th:if="${usuario.id_cargo == 2}">
+                    <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>
+                    <a class="nav-link" href="/cadastroSoftware">Cadastrar Software</a>
+                    <a class="nav-link" href="#">Locação Notebooks</a>
+                </li>
+                <li class="nav-item" th:if="${usuario.id_cargo == 3}">
+                    <a class="nav-link" href="#">Locação Notebooks</a>
+                </li>
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                        Dropdown-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                        <li><hr class="dropdown-divider"></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+            </ul>
+            <div class="d-flex">
+                <div style="width: 100%;">
+                    <!-- Alinha o botão "Sair" à direita usando flexbox -->
+                    <h6 class="mt-1" th:text="'Bem Vindo:' + ${usuario.nome}"></h6>
+                </div>
+                <div class="text-end">
+                    <a href="/logout" class="btn btn-sm btn-danger">Sair</a>
+                </div>
             </div>
-            <div th:if="${usuario.id_cargo == 2}">
-                <h1 th:text="${nome}" style="color: green;"></h1>
-                <a href="/cadastroNote">
-                    <li>Cadastro Notes</li>
-                </a>
-                <a href="/cadastroSoftware">
-                    <li>Cadastro De Software</li>
-                </a>
-            </div>
-            <div th:if="${usuario.id_cargo == 3}">
-                <h1 th:text="'Bem Vindo:' + ${usuario.nome}" style="color: green;"></h1>
-                <a href="#">
-                    <li>Locação De Notes</li>
-                </a>
-            </div>
-            <a href="/logout" type="submit" class="btn btn-warning">Deslogar</a>
-        </ul>
+        </div>
     </div>
 </nav>
+<div id="mainFrame" class="container">
+
+</div>
 </body>
 </html>
