@@ -6,7 +6,7 @@ function cadastrarNotebooks(){
 
     $.ajax({
         type: "POST",
-        url: "/cadastro/notebooks",
+        url: "/cadastroNote",
         data:{
             numero: numero,
             patrimonio: patrimonio

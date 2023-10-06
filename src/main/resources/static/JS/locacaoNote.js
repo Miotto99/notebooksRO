@@ -1,12 +1,12 @@
-$("#enviar").click(cadastroSoftware);
+$("#enviar").click(locacaoNotebooks);
 
-    function cadastroSoftware(){
+    function locacaoNotebooks(){
     let nome = $("#nome").val();
     let exigelicensa = $("#exigelicensa")[0].checked;
 
     $.ajax({
         type: "POST",
-        url: "/cadastrosoftware",
+        url: "/locacaoNote",
         data:{
         nome:nome,
         exige_licensa:exigelicensa,

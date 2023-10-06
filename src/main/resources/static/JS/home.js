@@ -1,5 +1,9 @@
 $('a').click(function(event){
     event.preventDefault();
+    if(!$(this).hasClass('btn')){
+        $('a').removeClass('active disabled');
+        $(this).addClass('active disabled');
+    }
     controleRotasGet($(this).attr("href"));
 });
 
@@ -7,14 +11,35 @@ function controleRotasGet(url){
     switch(url){
         case "/logout":
             gerarSwal(url);
-            break;
+        break;
         case "/cadastroNote":
             $.get(url,function(data){
                 $(".container").html(data);
 
                 $("#enviar").click(enviaCadastroNotebooks);
             })
-            break;
+        break;
+        case "/cadastro":
+            $.get(url,function(data){
+                $(".container").html(data);
+
+                $("#enviar").click(enviaCadastrarUsuario);
+            })
+        break;
+        case "/cadastroSoftware":
+            $.get(url,function(data){
+                $(".container").html(data);
+
+                $("#enviar").click(enviaCadastrarSoftware);
+            })
+        break;
+        case "/locacaoNote":
+            $.get(url,function(data){
+                $(".container").html(data);
+
+                $("#enviar").click(enviaLocacaoNotebooks);
+            })
+        break;
         default:
             alert('cancelei o get e fiz nada mb');
     }

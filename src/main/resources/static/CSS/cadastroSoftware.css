@@ -202,3 +202,7 @@ input[type="checkbox"]:not(:checked):focus + label:before {
   margin-bottom: 35px;
   border-radius: 15px;
 }
+
+.form-check>.form-check-label{
+    color:#ffffff !important;
+}

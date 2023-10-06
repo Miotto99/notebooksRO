@@ -1,4 +1,4 @@
-$("#btnCadastro").click(cadastrarUsuario);
+$("#enviar").click(cadastrarUsuario);
 
 function cadastrarUsuario(){
     let nome = $("#nome").val();

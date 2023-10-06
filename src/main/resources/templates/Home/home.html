@@ -20,6 +20,9 @@
     <!--Custom Scripts-->
     <script th:if="usuario.id_cargo == 1" src="cadastroNotes.js"></script>
     <script src="JS/home.js" defer></script>
+    <script src="JS/cadastroNote.js" defer></script>
+    <script src="JS/cadastro.js" defer></script>
+    <script src="JS/software.js" defer></script>
     <!--Custom Styles-->
     <style type="text/css">
         h6{
@@ -32,7 +35,7 @@
 <body>
 <nav class="navbar navbar-expand-lg border-bottom border-body bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,7 +48,7 @@
                     <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>
                     <a class="nav-link" href="/cadastro">Cadastrar Usuario</a>
                     <a class="nav-link" href="/cadastroSoftware">Cadastrar Software</a>
-                    <a class="nav-link" href="#">Locação Notebooks</a>
+                    <a class="nav-link" href="/locacaoNote">Locação Notebooks</a>
                 </li>
                 <li class="nav-item" th:if="${usuario.id_cargo == 2}">
                     <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>

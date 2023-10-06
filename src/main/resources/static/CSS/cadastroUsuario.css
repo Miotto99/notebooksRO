@@ -166,7 +166,7 @@ input[type="checkbox"]:not(:checked):focus + label:before {
   text-align: center;
 }
 .caixaCadastro .botao1 .bt-cadastro {
-  width: 100px;
+  width: 90px;
   height: 40px;
   font-family: 'Roboto', sans-serif;
   font-size: 11px;
@@ -188,6 +188,17 @@ input[type="checkbox"]:not(:checked):focus + label:before {
   color: #fff;
   transform: translateY(-3px);
 }
+
+.caixaCadastro .form-floating .form-select{
+  color: #fff;
+  background: #243b55;
+}
+
+.form-floating>.form-select~label::after{
+  background: #243b55 !important;
+}
+
+
 /*Mudando o Select*/
 
 .caixaCadastro .turno-curso .selecao {
