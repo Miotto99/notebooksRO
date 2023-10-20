@@ -3,12 +3,12 @@ package com.controle.notebooks.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "software")
+@Table(name="software")
 public class M_Software {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean exige_licensa;
+    private boolean exige_licenca;
     private String nome;
 
     public Long getId() {
@@ -19,12 +19,12 @@ public class M_Software {
         this.id = id;
     }
 
-    public boolean isExigelicensa() {
-        return exige_licensa;
+    public boolean isExigeLicenca() {
+        return exige_licenca;
     }
 
-    public void setExigelicensa(boolean exige_licensa) {
-        this.exige_licensa = exige_licensa;
+    public void setExigeLicenca(boolean exige_licenca) {
+        this.exige_licenca = exige_licenca;
     }
 
     public String getNome() {

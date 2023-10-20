@@ -1,6 +1,7 @@
 package com.controle.notebooks.Controller;
 
 import com.controle.notebooks.Service.S_Software;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,16 +10,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class C_Software {
-
-    @GetMapping("/cadastroSoftware")
-    public String getcadastro(){
-        return "software/cadastroSoftware";
+    @GetMapping("/cadastro/software")
+    public String getCadSoftware(HttpServletRequest request){
+        if(request.getHeader("Referer") != null){
+            return "software/cadastro";
+        }else{
+            return "redirect:/";
+        }
     }
 
-    @PostMapping("/cadastroSoftware")
+    @PostMapping("/cadastro/software")
     @ResponseBody
     public String cadastrarSoftware(@RequestParam("nome") String nome,
-                                    @RequestParam("exige_licensa") boolean exige_licensa){
-        return S_Software.cadastroSoftware(nome, exige_licensa);
+                                    @RequestParam("pago") boolean exigeLicenca){
+        return S_Software.cadastrarSoftware(nome, exigeLicenca);
     }
 }

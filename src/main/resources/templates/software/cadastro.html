@@ -1,0 +1,24 @@
+<h1 class="mt-5 mb-3">Cadastro de software</h1>
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="input-group has-validation">
+            <span class="input-group-text">@</span>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="nome" placeholder="Nome do software" required>
+                <label for="nome">Nome do software</label>
+            </div>
+            <div class="invalid-feedback">
+                Por favor informe o nome do software.
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <input type="radio" class="btn-check" name="options-outlined" id="free" autocomplete="off" checked>
+        <label class="btn btn-outline-success" for="free">Sem Licença</label>
+        <input type="radio" class="btn-check" name="options-outlined" id="pago" autocomplete="off">
+        <label class="btn btn-outline-danger" for="pago">Exige Licença</label>
+    </div>
+    <div class="col-6 mb-3 text-end">
+        <button id="enviar" class="btn btn-lg btn-primary">Cadastrar</button>
+    </div>
+</div>

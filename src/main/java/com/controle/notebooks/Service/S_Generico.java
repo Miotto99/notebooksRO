@@ -2,31 +2,28 @@ package com.controle.notebooks.Service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class S_Generico {
-
-
     public static boolean validarEmail(String email) {
-        // Define a expressão regular para validar o formato do e-mail
+        // Defina a expressão regular para validar o e-mail
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-
-        // Compila a expressão regular em um objeto Pattern
+        // Crie o objeto de padrão
         Pattern pattern = Pattern.compile(regex);
-
-        // Cria um objeto Matcher para o e-mail fornecido
+        // Crie o objeto de correspondência
         Matcher matcher = pattern.matcher(email);
-
-        // Retorna true se o e-mail corresponder à expressão regular, caso contrário, retorna false
+        // Realize a correspondência e retorne true se o e-mail for válido
         return matcher.matches();
     }
+
     public static boolean textoEstaVazio(String texto){
         return texto == null || texto.trim().equals("");
     }
 
-    public static String cleanerNumber(String number){
-            return number.replaceAll("[^0-9]", "");
+    public static String limparNumero(String numero) {
+        // Remove caracteres, apenas os dígitos serão mantidos
+        return numero.replaceAll("[^0-9]", "");
     }
-
 }

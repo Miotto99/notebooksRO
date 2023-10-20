@@ -12,14 +12,6 @@ public class M_Notebooks {
     private Long patrimonio;
     private boolean ativo;
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
     public Long getId() {
         return id;
     }
@@ -42,5 +34,13 @@ public class M_Notebooks {
 
     public void setPatrimonio(Long patrimonio) {
         this.patrimonio = patrimonio;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

@@ -13,22 +13,22 @@ public class S_Software {
         this.r_software = r_software;
     }
 
-    public static String cadastroSoftware(String nome, boolean licensa){
-    String mensagem = "";
+    public static String cadastrarSoftware(String nome, boolean licenca){
+        String mensagem = "";
 
-    if(S_Generico.textoEstaVazio(nome)){
-        mensagem+= "O Nome pracisa ser informado";
-    }else{
-        M_Software m_software = new M_Software();
-        m_software.setNome(nome);
-        m_software.setExigelicensa(licensa);
-        try{
-            r_software.save(m_software);
-            mensagem += "Software cadastrado com sucesso!";
-        }catch (DataIntegrityViolationException e){
-            mensagem += "Falha ao incluir o registro no banco de daos!";
+        if(S_Generico.textoEstaVazio(nome)){
+            mensagem += "O Nome precisa ser informado";
+        }else{
+            M_Software m_software = new M_Software();
+            m_software.setNome(nome);
+            m_software.setExigeLicenca(licenca);
+            try{
+                r_software.save(m_software);
+                mensagem += "Software cadastrado com sucesso!";
+            }catch (DataIntegrityViolationException e){
+                mensagem += "Falha ao incluir o registro no banco de dados!";
+            }
         }
-    }
-    return mensagem;
+        return mensagem;
     }
 }

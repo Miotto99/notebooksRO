@@ -1,6 +1,6 @@
 package com.controle.notebooks.Model;
 
-import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,11 +9,21 @@ public class M_Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
-    private String email;
-    private Long matricula;
     private Long id_cargo;
+    private Long matricula;
+    private String email;
     private String senha;
+    private boolean ativo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -21,22 +31,6 @@ public class M_Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Long matricula) {
-        this.matricula = matricula;
     }
 
     public Long getId_cargo() {
@@ -47,19 +41,35 @@ public class M_Usuario {
         this.id_cargo = id_cargo;
     }
 
-    public String getSenha(){
+    public Long getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Long matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha){
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public Long getId(){
-        return id;
+    public boolean isAtivo() {
+        return ativo;
     }
 
-    public void setId(Long id){
-        this.id = id;
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

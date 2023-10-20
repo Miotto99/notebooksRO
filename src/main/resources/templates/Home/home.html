@@ -8,9 +8,13 @@
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
     <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -18,16 +22,34 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css" rel="stylesheet">
     <!--Custom Scripts-->
-    <script th:if="usuario.id_cargo == 1" src="cadastroNotes.js"></script>
-    <script src="JS/home.js" defer></script>
-    <script src="JS/cadastroNote.js" defer></script>
-    <script src="JS/cadastro.js" defer></script>
-    <script src="JS/software.js" defer></script>
+    <script th:if="${usuario.id_cargo == 1}" src="cadastroNotes.js"></script>
+    <script th:if="${usuario.id_cargo == 1}" src="cadastroUsuario.js"></script>
+    <script th:if="${usuario.id_cargo == 1}" src="cadastroSoftware.js"></script>
+    <script src="routes.js"></script>
+    <script src="perfil.js"></script>
+    <script src="home.js" defer></script>
     <!--Custom Styles-->
     <style type="text/css">
         h6{
             color: #fff;
             margin-right: 1em;
+        }
+        hr{
+            margin: 0 !important;
+        }
+        .spacer{
+            border-left: solid rgba(0,0,0,.25) 1px;
+            min-height: 70vh;
+        }
+        #reservas{
+            overflow-y: auto;
+            max-height: 65vh;
+        }
+        #cabListaReservas {
+            position: sticky;
+            top: 0;
+            background-color: #f2f2f2;
+            z-index: 1;
         }
     </style>
     <title>Document</title>
@@ -35,45 +57,43 @@
 <body>
 <nav class="navbar navbar-expand-lg border-bottom border-body bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand">
+            <img src="https://www.sistemafiep.org.br/onde-encontrar/resources/img/logo_sistema.png"
+                 height="40px" width="160px">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li>
-                <li class="nav-item" th:if="${usuario.id_cargo == 1}">
-                    <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>
-                    <a class="nav-link" href="/cadastro">Cadastrar Usuario</a>
-                    <a class="nav-link" href="/cadastroSoftware">Cadastrar Software</a>
-                    <a class="nav-link" href="/locacaoNote">Locação Notebooks</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cadastro
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li th:if="${usuario.id_cargo == 1}">
+                            <a class="dropdown-item" href="/cadastro/notebooks">Notebooks</a>
+                        </li>
+                        <li th:if="${usuario.id_cargo == 1}">
+                            <a class="dropdown-item" href="/cadastro">Usuário</a>
+                        </li>
+                        <li th:if="${usuario.id_cargo == 1}">
+                            <a class="dropdown-item" href="/cadastro/software">Software</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item" th:if="${usuario.id_cargo == 2}">
-                    <a class="nav-link" href="/cadastroNote">Cadastrar Notebooks</a>
-                    <a class="nav-link" href="/cadastroSoftware">Cadastrar Software</a>
-                    <a class="nav-link" href="#">Locação Notebooks</a>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/edit/usuario">Perfil</a>
                 </li>
-                <li class="nav-item" th:if="${usuario.id_cargo == 3}">
-                    <a class="nav-link" href="#">Locação Notebooks</a>
-                </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                        Dropdown-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--                        <li><hr class="dropdown-divider"></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
             </ul>
             <div class="d-flex">
                 <div style="width: 100%;">
-                    <!-- Alinha o botão "Sair" à direita usando flexbox -->
-                    <h6 class="mt-1" th:text="'Bem Vindo:' + ${usuario.nome}"></h6>
+                    <h6 class="mt-1" th:text="${'Bem vindo: ' + usuario.nome}"></h6>
                 </div>
                 <div class="text-end">
                     <a href="/logout" class="btn btn-sm btn-danger">Sair</a>
@@ -83,7 +103,62 @@
     </div>
 </nav>
 <div id="mainFrame" class="container">
-
+    <div class="row mt-5">
+        <div class="col-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <span></span>
+                <h1 class="text-center">Notificações</h1>
+                <a href="#" class="btn btn-sm btn-success">+</a>
+            </div>
+            <hr>
+        </div>
+        <div class="col-6 spacer">
+            <div class="d-flex justify-content-between align-items-center">
+                <span></span>
+                <h1 class="text-center">Reservas</h1>
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#novaReserva">+</button>
+            </div>
+            <hr>
+            <section id="reservas">
+                <table class="table table-striped text-center">
+                    <thead id="cabListaReservas">
+                        <tr>
+                            <th>Data Reserva</th>
+                            <th>Quantidade</th>
+                            <th>Data Criação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaReservas">
+                    </tbody>
+                </table>
+            </section>
+            <!-- Modal -->
+            <div class="modal fade" id="novaReserva" tabindex="-1" aria-labelledby="novaReservaTitle" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="novaReservaTitle">Nova Reserva</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input id="data" class="form-control" type="date"/>
+                                </div>
+                                <div class="col-6">
+                                    <input id="qtd" class="form-control" type="number"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="addReserva()">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
