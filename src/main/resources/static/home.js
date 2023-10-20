@@ -55,4 +55,7 @@ function addReserva(){
                                     '<td>'+quantidade+'</td>'+
                                     '<td>'+new Date().toLocaleDateString()+'</td>'+
                                 '</tr>');
+         $("#dataReserva").val('');
+         $("#quantidade").val('');
+         $('#exampleModal').modal('hide');
 }
